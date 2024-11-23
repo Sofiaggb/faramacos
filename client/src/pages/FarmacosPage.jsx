@@ -9,6 +9,7 @@ const FarmacosPage = () => {
   const [farmacos, setFarmacos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [mostrarTipos, setMostrarTipos] = useState(false); // Estado para mostrar el panel de Tipos
+  const [message, setMessage] = useState("");
 
 
   // Función para cargar los fármacos
@@ -17,13 +18,21 @@ const FarmacosPage = () => {
       const farmacosData = await getFarmacos();
       setFarmacos(farmacosData);
       console.log(farmacos)
-    } catch (error) {
-      console.error("Error al obtener los fármacos:", error);
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setMessage(err.response.data.detail);
+      }
     } finally { 
       setLoading(false);
     }
   };
 
+    // Limpiar el mensaje cuando haya tipos 
+    useEffect(() => { 
+      if (farmacos.length > 0) { 
+        setMessage(""); 
+      } 
+    }, [farmacos]);
 
   // Función para eliminar un fármaco
   const handleDelete = async (id) => {
@@ -69,23 +78,23 @@ const FarmacosPage = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-4">Gestión de Fármacos</h1>
+      <h1 className="text-4xl text-center font-bold mb-4">Gestión de Fármacos</h1>
       <div className="flex space-x-4 m-6">
         <Link
           to="/farmacos/create"
-          className="group relative inline-block text-sm font-medium text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+          className="group relative inline-block text-sm font-medium text-indigo-900 focus:outline-none focus:ring active:text-indigo-500"
         >
           <span
             className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-indigo-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
           ></span>
 
-          <span className="relative block border border-current bg-white px-8 py-3"> Crear Fármaco </span>
+          <span className="relative block border border-current bg-indigo-200 px-8 py-3"> Crear Fármaco </span>
         </Link>
         
 
         <button
           onClick={() => setMostrarTipos(true)} // Mostrar el panel de Tipos
-          className="group relative inline-block text-sm font-medium text-emerald-600 focus:outline-none 
+          className="group relative inline-block text-sm font-medium text-emerald-900 focus:outline-none 
           focus:ring active:text-indigo-500"
         >
           <span
@@ -93,10 +102,14 @@ const FarmacosPage = () => {
             group-hover:translate-x-0 group-hover:translate-y-0"
           ></span>
 
-          <span className="relative block border border-current bg-white px-8 py-3">Ver Tipos </span>
+          <span className="relative block border border-current bg-emerald-200 px-8 py-3">Ver Tipos </span>
         </button>
       </div>
-
+    {
+    message ? (
+      <p className="text-center text-2xl mt-10">{message}</p>
+   
+    ) :(
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-200">
           <thead>
@@ -144,6 +157,9 @@ const FarmacosPage = () => {
           </tbody>
         </table>
       </div>
+)
+}
+      
 
       {mostrarTipos && (
         <TiposView onClose={() => setMostrarTipos(false)} />

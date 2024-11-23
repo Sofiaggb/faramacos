@@ -63,15 +63,15 @@ const FormTipo = ({
           <div className="flex space-x-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Guardar
+              className="rounded-md py-2 px-4 border-2 border-blue-500 text-blue-500 hover:bg-blue-500
+               hover:text-gray-100 focus:outline-none">
+               Guardar
             </button>
             <button
               type="button"
               onClick={onCancel}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-            >
+              className="rounded-md py-2 px-4 border-2 border-gray-600 text-gray-600 hover:bg-gray-600
+               hover:text-gray-100 focus:outline-none">
               Cancelar
             </button>
           </div>

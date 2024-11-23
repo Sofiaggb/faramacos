@@ -10,6 +10,8 @@ const TiposView = ({ onClose }) => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [tipoSeleccionado, setTipoSeleccionado] = useState(null); // Tipo en edición
   const [descripcion, setDescripcion] = useState("");
+  const [message, setMessage] = useState("");
+
 
   // Obtener todos los tipos al cargar el componente
   useEffect(() => {
@@ -17,9 +19,12 @@ const TiposView = ({ onClose }) => {
       try {
         const data = await getTipos();
         setTipos(data);
+        // console.log(data)
+        // console.log(tipos)
       } catch (err) {
-        setError("Error al cargar los tipos.");
-        console.error(err);
+        if (err.response && err.response.status === 404) {
+          setMessage(err.response.data.detail);
+        }
       }finally { 
         setLoading(false);
       }
@@ -27,6 +32,15 @@ const TiposView = ({ onClose }) => {
 
     fetchTipos();
   }, []);
+
+
+
+  // Limpiar el mensaje cuando haya tipos 
+  useEffect(() => { 
+    if (tipos.length > 0) { 
+      setMessage(""); 
+    } 
+  }, [tipos]);
 
   // Manejar eliminación de un tipo
   const handleEliminar = async (id_tipo) => {
@@ -54,7 +68,7 @@ const TiposView = ({ onClose }) => {
           console.error(err);
           Swal.fire(
             'Error',
-            'Hubo un problema al eliminar el tipo.',
+            'No puedes eliminar este tipo porque esta siendo usado por un farmaco.',
             'error'
           );
         }
@@ -106,7 +120,7 @@ const TiposView = ({ onClose }) => {
 
 
   return (
-    <div className="fixed inset-y-0  left-0 w-1/3 bg-white shadow-lg p-6 z-50">
+    <div className="fixed inset-y-0  left-0 w-1/3 bg-emerald-50 shadow-lg p-6 z-50">
         <button
           onClick={onClose}
           className="text-gray-500 hover:text-gray-800 absolute top-4 right-4"
@@ -118,20 +132,30 @@ const TiposView = ({ onClose }) => {
 
       {/* Botón para agregar tipo */}
       <div className="flex justify-end mb-4">
-        <button
-          onClick={handleAgregar}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+      <button
+          onClick={handleAgregar} // Mostrar el panel de Tipos
+          className="group relative inline-block text-sm font-medium bg-teal-600  focus:outline-none 
+          focus:ring active:text-indigo-500"
         >
-          Agregar Tipo
+          <span
+            className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-teal-600  transition-transform 
+            group-hover:translate-x-0 group-hover:translate-y-0"
+          ></span>
+
+          <span className="relative block border border-current bg-teal-200 px-8 py-3">Agregar Tipo</span>
         </button>
+       
       </div>
 
-      { loading ? 
+      { loading ? (
           <p className="text-center mt-10">Cargando Tipos...</p>
-          :(
+       ) : message ? (
+             <p className="text-center text-2xl mt-10">{message}</p>
+            
+        ) :(
             <div>
               {/* Lista de tipos */}
-              <ul className="bg-white shadow rounded-lg divide-y divide-gray-200">
+              <ul className="bg-emerald-50 shadow rounded-lg divide-y divide-gray-200">
               {tipos.map((tipo) => (
                 <li
                   key={tipo.id_tipo}
