@@ -64,11 +64,10 @@ const TiposView = ({ onClose }) => {
             'success'
           );
         } catch (err) {
-          setError("Error al eliminar el tipo.");
           console.error(err);
           Swal.fire(
             'Error',
-            'No puedes eliminar este tipo porque esta siendo usado por un farmaco.',
+            'No puedes eliminar este tipo porque esta siendo usado por uno o varios farmacos.',
             'error'
           );
         }
@@ -153,7 +152,8 @@ const TiposView = ({ onClose }) => {
              <p className="text-center text-2xl mt-10">{message}</p>
             
         ) :(
-            <div>
+            <div className="h-[450px] overflow-y-auto bg-emerald-50 shadow rounded-lg divide-y
+             divide-gray-200 custom-scrollbar">
               {/* Lista de tipos */}
               <ul className="bg-emerald-50 shadow rounded-lg divide-y divide-gray-200">
               {tipos.map((tipo) => (
@@ -165,14 +165,14 @@ const TiposView = ({ onClose }) => {
                   <div className="flex space-x-2">
                     <button
                       onClick={() => handleEditar(tipo)}
-                      className="rounded-full py-2 px-4 border-2 border-yellow-500 text-yellow-500
+                      className="rounded-full py-2 px-4 border-2 border-yellow-500 text-yellow-800
                      hover:bg-yellow-500 hover:text-gray-100 focus:outline-none"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => handleEliminar(tipo.id_tipo)}
-                      className="rounded-full py-2 px-4 border-2 border-red-500 text-red-500
+                      className="rounded-full py-2 px-4 border-2 border-red-500 text-red-800
                      hover:bg-red-500 hover:text-gray-100 focus:outline-none"
                     >
                       Eliminar
@@ -193,7 +193,7 @@ const TiposView = ({ onClose }) => {
           setDescripcion={setDescripcion}
           onSubmit={handleGuardar}
           onCancel={() => setMostrarModal(false)}
-          titulo={tipoSeleccionado ? "Editar Tipo" : "Agregar Tipo"}
+          titulo={tipoSeleccionado ? "Editar Tipo de Fármaco" : "Tipo de Fármaco"}
         />
       )}
     </div>

@@ -3,7 +3,7 @@ from models.models import Tipo
 from schemas.tipoShema import TipoBase
 
 def obtener_tipos(db: Session):
-    return db.query(Tipo).all()
+    return db.query(Tipo).order_by(Tipo.descripcion).all()
 
 def obtener_tipo(id_tipo: int, db: Session):
     return db.query(Tipo).filter(Tipo.id_tipo == id_tipo).first()

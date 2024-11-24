@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Swal from 'sweetalert2';
 
 const FormTipo = ({
   descripcion,
@@ -9,37 +8,20 @@ const FormTipo = ({
   titulo = "Formulario",
 }) => {
 
-
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Validación básica
     if (!descripcion.trim()) {
       setError("La descripción es obligatoria.");
       return;
     }
-
     // Limpia el error y llama a `onSubmit`
     setError("");
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // Validación básica
-  //   if (!descripcion.trim()) {
-  //     Swal.fire({
-  //       title: "Error de Envío",
-  //       text: "La descripción es obligatoria.",
-  //       icon: "error",
-  //     });
-  //     return;
-  //   }
-
     // Si pasa la validación, llama a `onSubmit`
     onSubmit(e);
   };
-
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-md w-1/3">

@@ -77,7 +77,7 @@ const FarmacosPage = () => {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 ">
       <h1 className="text-4xl text-center font-bold mb-4">Gestión de Fármacos</h1>
       <div className="flex space-x-4 m-6">
         <Link
@@ -111,41 +111,41 @@ const FarmacosPage = () => {
    
     ) :(
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-200">
+        <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="border border-gray-200 px-4 py-2">ID</th>
-              <th className="border border-gray-200 px-4 py-2">Nombre Comercial</th>
-              <th className="border border-gray-200 px-4 py-2">Fecha Elaboración</th>
-              <th className="border border-gray-200 px-4 py-2">Principio Activo</th>
-              <th className="border border-gray-200 px-4 py-2">Miligramos</th>
-              <th className="border border-gray-200 px-4 py-2">Tipo</th>
-              <th className="border border-gray-200 px-4 py-2">Acciones</th>
+            <tr className="bg-gray-200">
+              <th className="border border-gray-400 px-4 py-2">ID</th>
+              <th className="border border-gray-400 px-4 py-2">Nombre Comercial</th>
+              <th className="border border-gray-400 px-4 py-2">Fecha Elaboración</th>
+              <th className="border border-gray-400 px-4 py-2">Principio Activo</th>
+              <th className="border border-gray-400 px-4 py-2">Miligramos</th>
+              <th className="border border-gray-400 px-4 py-2">Tipo</th>
+              <th className="border border-gray-400 px-4 py-2">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {farmacos.map((farmaco) => (
               <tr key={farmaco.id} className="text-center">
-                <td className="border border-gray-200 px-4 py-2">{farmaco.id}</td>
-                <td className="border border-gray-200 px-4 py-2">{farmaco.nombre_comercial}</td>
-                <td className="border border-gray-200 px-4 py-2">{farmaco.fecha_elaboracion}</td>
-                <td className="border border-gray-200 px-4 py-2">{farmaco.principio_activo}</td>
-                <td className="border border-gray-200 px-4 py-2">{farmaco.miligramos} mg</td>
-                <td className="border border-gray-200 px-4 py-2"> 
+                <td className="border border-gray-400 px-4 py-2">{farmaco.id}</td>
+                <td className="border border-gray-400 px-4 py-2">{farmaco.nombre_comercial}</td>
+                <td className="border border-gray-400 px-4 py-2">{farmaco.fecha_elaboracion}</td>
+                <td className="border border-gray-400 px-4 py-2">{farmaco.principio_activo}</td>
+                <td className="border border-gray-400 px-4 py-2">{farmaco.miligramos} mg</td>
+                <td className="border border-gray-400 px-4 py-2"> 
                   {/* Renderizar el tipo de fármaco usando la función async */}
                   <TipoAsync tipoId={farmaco.id_tipo} />
                   {/* {obtenerTipo(farmaco.id_tipo)} */}
                 </td>
-                <td className="border border-gray-200 px-4 py-2 space-x-2">
+                <td className="border border-gray-400 px-4 py-2 space-x-2">
                   <Link
                     to={`/farmacos/edit/${farmaco.id}`}
-                    className="rounded-full py-2 px-4 border-2 border-yellow-500 text-yellow-500
+                    className="rounded-full py-2 px-4 border-2 border-yellow-500 text-yellow-800
                      hover:bg-yellow-500 hover:text-gray-100 focus:outline-none"
                   >
                     Editar
                   </Link>
                   <button
-                    className="rounded-full py-2 px-4 border-2 border-red-500 text-red-500
+                    className="rounded-full py-2 px-4 border-2 border-red-500 text-red-800
                      hover:bg-red-500 hover:text-gray-100 focus:outline-none"
                     onClick={() => handleDelete(farmaco.id)}
                   >

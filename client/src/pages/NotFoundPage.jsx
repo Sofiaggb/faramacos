@@ -5,9 +5,16 @@ const NotFoundPage = () => {
         <p className="text-xl text-gray-600 mb-6">Página no encontrada</p>
         <a
           href="/"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="group relative inline-block text-sm font-medium text-emerald-900 
+          focus:outline-none focus:ring active:text-emerald-500"
         >
-          Volver al Inicio
+           <span
+            className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-emerald-600 transition-transform
+             group-hover:translate-x-0 group-hover:translate-y-0"
+          ></span>
+
+          <span className="relative block border border-current bg-indigo-200 px-8 py-3"> Volver al Inicio </span>
+          
         </a>
       </div>
     );

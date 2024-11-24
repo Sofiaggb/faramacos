@@ -144,6 +144,25 @@ const FormFarmaco = () => {
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
+          <label className="block font-medium mb-1">Tipo de Fármaco</label>
+          <select
+            name="id_tipo"
+            value={formData.id_tipo}
+            onChange={handleChange}
+            className="w-full border border-teal-700 rounded px-3 py-2"
+            required
+          >
+            <option value="">Selecciona un tipo</option>
+            {tipos.length === 0 ? ( 
+              <option value="" disabled>No hay tipos en existencia</option> 
+              ) : ( 
+                tipos.map((tipo) => ( 
+                <option key={tipo.id_tipo} value={tipo.id_tipo}> {tipo.descripcion} </option> 
+                )) 
+              )}
+          </select>
+        </div>
+        <div className="mb-4">
           <label className="block font-medium mb-1">Nombre Comercial</label>
           <input
             type="text"
@@ -188,25 +207,7 @@ const FormFarmaco = () => {
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block font-medium mb-1">Tipo de Fármaco</label>
-          <select
-            name="id_tipo"
-            value={formData.id_tipo}
-            onChange={handleChange}
-            className="w-full border border-teal-700 rounded px-3 py-2"
-            required
-          >
-            <option value="">Selecciona un tipo</option>
-            {tipos.length === 0 ? ( 
-              <option value="" disabled>No hay tipos en existencia</option> 
-              ) : ( 
-                tipos.map((tipo) => ( 
-                <option key={tipo.id_tipo} value={tipo.id_tipo}> {tipo.descripcion} </option> 
-                )) 
-              )}
-          </select>
-        </div>
+        
         <div className="flex justify-end space-x-2">
           <button
             type="submit"
