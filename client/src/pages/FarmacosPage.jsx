@@ -78,7 +78,7 @@ const FarmacosPage = () => {
 
   return (
     <div className="container mx-auto py-8 ">
-      <h1 className="text-4xl text-center font-bold mb-4">Gestión de Fármacos</h1>
+      <h1 className="text-4xl text-center text-gray-800 font-bold mb-4">Gestión de Fármacos</h1>
       <div className="flex space-x-4 m-6">
         <Link
           to="/farmacos/create"
@@ -114,13 +114,13 @@ const FarmacosPage = () => {
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border border-gray-400 px-4 py-2">ID</th>
-              <th className="border border-gray-400 px-4 py-2">Nombre Comercial</th>
-              <th className="border border-gray-400 px-4 py-2">Fecha Elaboración</th>
-              <th className="border border-gray-400 px-4 py-2">Principio Activo</th>
-              <th className="border border-gray-400 px-4 py-2">Miligramos</th>
-              <th className="border border-gray-400 px-4 py-2">Tipo</th>
-              <th className="border border-gray-400 px-4 py-2">Acciones</th>
+              <th className="border border-blue-400 px-4 py-2">ID</th>
+              <th className="border border-blue-400 px-4 py-2">Nombre Comercial</th>
+              <th className="border border-blue-400 px-4 py-2">Fecha Elaboración</th>
+              <th className="border border-blue-400 px-4 py-2">Principio Activo</th>
+              <th className="border border-blue-400 px-4 py-2">Miligramos</th>
+              <th className="border border-blue-400 px-4 py-2">Tipo</th>
+              <th className="border border-blue-400 px-4 py-2">Acciones</th>
             </tr>
           </thead>
           <tbody>

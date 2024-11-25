@@ -138,8 +138,8 @@ const FormFarmaco = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow-md">
-      <h2 className="text-xl font-bold mb-4">
+    <div className="max-w-md mx-auto bg-gray-100 p-6 rounded">
+      <h2 className="text-3xl font-bold mb-4 text-center">
         {id ? "Editar Fármaco" : "Crear Fármaco"}
       </h2>
       <form onSubmit={handleSubmit}>
@@ -173,17 +173,7 @@ const FormFarmaco = () => {
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block  font-medium mb-1">Fecha de Elaboración</label>
-          <input
-            type="date"
-            name="fecha_elaboracion"
-            value={formData.fecha_elaboracion}
-            onChange={handleChange}
-            className="w-full border border-teal-700 rounded px-3 py-2"
-            required
-          />
-        </div>
+        
         <div className="mb-4">
           <label className="block font-medium mb-1">Principio Activo</label>
           <input
@@ -195,20 +185,32 @@ const FormFarmaco = () => {
             required
           />
         </div>
+        <div className="flex justify-between">
         <div className="mb-4">
-          <label className="block  font-medium mb-1">Miligramos</label>
-          <input
-            type="number"
-            name="miligramos"
-            value={formData.miligramos}
-            onChange={handleChange}
-            className="w-full border border-teal-700 rounded px-3 py-2"
-             min="0"
-            required
-          />
+            <label className="block  font-medium mb-1">Miligramos</label>
+            <input
+              type="number"
+              name="miligramos"
+              value={formData.miligramos}
+              onChange={handleChange}
+              className="w-full border border-teal-700 rounded px-3 py-2"
+              min="0"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block  font-medium mb-1">Fecha de Elaboración</label>
+            <input
+              type="date"
+              name="fecha_elaboracion"
+              value={formData.fecha_elaboracion}
+              onChange={handleChange}
+              className="w-full border border-teal-700 rounded px-3 py-2"
+              required
+            />
+          </div>
         </div>
-        
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-center space-x-4">
           <button
             type="submit"
             className="rounded-md py-2 px-4 border-2 border-blue-500 text-blue-500 hover:bg-blue-500

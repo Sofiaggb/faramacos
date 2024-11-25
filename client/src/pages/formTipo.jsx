@@ -24,25 +24,22 @@ const FormTipo = ({
   };
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-md w-1/3">
-        <h2 className="text-2xl font-bold mb-4">{titulo}</h2>
+      <div className="bg-teal-100 p-6 rounded-lg shadow-md w-1/3">
+        <h2 className="text-2xl text-center font-bold mb-4">{titulo}</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
-              Descripción:
-            </label>
             <input
               type="text"
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring
+              className="w-full px-4 py-2 border border-gray-300 rounded bg-teal-200 focus:outline-none focus:ring
                focus:ring-blue-300"
             />
              {error && (
               <p className="text-red-500 text-sm mt-2">{error}</p>
             )}
           </div>
-          <div className="flex space-x-4">
+          <div className="flex justify-center space-x-4">
             <button
               type="submit"
               className="rounded-md py-2 px-4 border-2 border-blue-500 text-blue-500 hover:bg-blue-500
